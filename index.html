@@ -12,22 +12,23 @@
 
 <body >
     <div class="top-container">
-      <img class="top-cloud" src="./assets//earth.png" alt="cloud">
+      <img class="top-cloud" src="" data-src="./assets//earth.png" alt="cloud">
       <div class="title-text">
         <h1> <span style="color: #FFF6E0;">I'm Jcy.</span></h1>
         <h2> <span style="color: #FFF6E0;">a programmer and dream of becoming an astronaut.</span></h2>
       </div>
-      <img class="bottom-cloud" src="./assets/mars.png" alt="cloud">
-      <img class="mountain" src="./assets/astronaut.png" alt="astronaut-img">
+      <img class="bottom-cloud" src="" data-src="./assets/mars.png" alt="cloud">
+      <img class="mountain" src="" data-src="./assets/astronaut.png" alt="astronaut-img">
     </div>
   
     <div class="middle-container">
       <div class="profile">
-        <img src="./assets/self.png" alt="Jcy-profile-img">
+        <img src="" data-src="./assets/self.png" alt="Jcy-profile-img">
         <h2>Aloha👋.</h2>
         <p class="intro">我叫姜辰宇，研究生毕业于南加大大学✌️Viterbi学院，
-          修的是Electrical Engineer.本科就读于北京交通大学，专业是轨道交通信号与控制。
-          虽然我没有实际的工作经验，但在大学课程让我对前端有了初步的了解，学习期间熟悉了HTML, CSS, 和JavaScript，并且自学React，帮组我完成任务管理平台等project。毕业之后我也一直保持前端的学习📖，保持对前端开发的热衷，希望能创造用户友好的界面。
+          修的是Electrical Engineer.本科就读于北京交通大学，专业是轨道交通信号与控制。在研究生期间，接触到了前端的课程，
+          让我对前端有了初步的了解，学习期间熟悉了HTML,CSS,和JavaScript，后自学React，Vue.独立开发完成任务管理平台等project。
+          我喜欢设计，希望能创造漂亮简洁的界面，为此我一直保持前端的学习📖，希望能找到一份前端开发的工作💼
         </p>
       </div>
       <hr>
@@ -53,25 +54,30 @@
             <h3>待办事项网页应用程序🧺</h3>
             <p>使用Node.js、Express.js和EJS开发一个待办事项网页应用程序。应用程序允许用户创建和查看任务，待办任务分为今日任务和工作任务，可以互相切换。由于这个版本的应用程序不使用数据库，任务不会在各个会话之间持久保存。</p>
           </div>
+          <div class="next">
+            <h3>可视化财务系统✍️</h3>
+            <p>使用Vue,elementUI,mockjs,echarts开发一个可视化记账网页,帮助用户完成平日的支出与消费记录，并通过折线图、柱状图、饼图展现用户消费习惯。正在努力完成中ing</p>
+          </div>
         </div>
         <hr>
         <h2>技能🔍</h2>
         <div class="parent2">
           <div class="typing">
-            <img class="typing-img"  src="./assets/type.png" alt="typing">
+            <img class="typing-img"  src="" data-src="./assets/type.png" alt="typing">
           </div>
           <div class="coding">
             <h3>专业技能</h3>
             <ul>
-              <li>熟悉HTML+CSS, HTML5+CSS3,弹性盒子布局模式,ES6新特性,闭包等前端web开发技术</li>
-              <li>基本熟悉使用 React 框架，包括使用 React Hooks 和函数式编程技巧</li>
+              <li>熟悉HTML+CSS, HTML5+CSS3,弹性盒子布局模式等前端web开发技术</li>
+              <li>熟悉使用element-ui布局，echarts可视化开发</li>
+              <li>熟悉使用 React 框架，包括使用 React Hooks 和函数式编程技巧</li>
               <li>正在学习vue全家桶,基本熟悉vue2基础知识，能够快速上手</li>
               <li>了解使用 Node.js 和 Express 框架进行后端开发</li>
               <li>熟练使用 EJS 模板引擎进行服务器端渲染，动态生成和呈现内容响应用户请求</li>
             </ul>
           </div>
           <div class="basketball">
-            <img class="basketball-img" src="./assets/basketball.png" alt="basketball-img">
+            <img class="basketball-img" src="" data-src="./assets/basketball.png" alt="basketball-img">
           </div>
           <div class="hobby">
             <h3>篮球</h3>
@@ -92,8 +98,30 @@
         </div>
       </div>
     </div>
+
+    <script>
+        let num = document.getElementsByTagName('img').length // 
+        let img = document.getElementsByTagName('img')
+        console.log(num)
+        let n = 0
+        lazyLoad()
+        window.onscroll = lazyLoad
+        function lazyLoad(){
+            let seeHeight = document.documentElement.clientHeight//可视区域
+            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+            
+            for(let i = n; i < num; i++){
+                if(img[i].offsetTop < seeHeight + scrollTop){
+                    if(img[i].getAttribute('src') == ''){
+                        console.log('发生替换')
+                        img[i].src = img[i].getAttribute('data-src')
+                    }
+                    n = i + 1//避免重复
+                }
+            }
+        }
+    </script>
     
-  
-  
 </body>
+
 </html>
